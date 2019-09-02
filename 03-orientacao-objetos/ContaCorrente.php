@@ -30,6 +30,13 @@ class ContaCorrente{
         return $this;
     }
 
+    public function transferir(float $valor, ContaCorrente $conta)
+    {
+        $this->sacar($valor);
+        $conta->depositar($valor);
+        return $this;
+    }
+
     public function __get($atributo)
     {
         return $this->$atributo;

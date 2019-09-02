@@ -11,10 +11,7 @@ echo $contaJoao->getSaldo() . PHP_EOL;
 var_dump($contaJoao);
 var_dump($contaMaria);
 
-$contaJoao->depositar(200.50);
+$contaJoao->transferir(200, $contaMaria);
 
 var_dump($contaJoao);
-
-$contaJoao->sacar(100.50)->depositar(50);
-
-var_dump($contaJoao);
+var_dump($contaMaria);
