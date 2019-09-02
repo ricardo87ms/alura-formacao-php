@@ -44,7 +44,7 @@ class ContaCorrente{
 
     public function __set($atributo, $valor)
     {
-        $this->protegeAtributo($atributo);
+        Validacao::protegeAtributo($atributo);
         $this->$atributo = $valor;
     }
 
@@ -63,13 +63,6 @@ class ContaCorrente{
     //     $this->numero = $numero;
     // }
 
-    private function protegeAtributo($atributo)
-    {
-        if($atributo == "titular" || $atributo == "saldo" ){
-            throw new Exception("O atributo $atributo é privado");
-        }
-    }
-
     private function formataSaldo()
     {
         return number_format($this->saldo, 2, ",", ".");
@@ -78,5 +71,10 @@ class ContaCorrente{
     public function getSaldo()
     {
         return $this->formataSaldo();
+    }
+
+    public function __toString()
+    {
+        return "O titular da conta é $this->titular e seu saldo é $this->saldo";
     }
 }
