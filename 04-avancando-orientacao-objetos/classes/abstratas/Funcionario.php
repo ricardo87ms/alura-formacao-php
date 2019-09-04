@@ -13,4 +13,14 @@ class Funcionario
         $this->cpf = $cpf;
         $this->salario = $salario;
     }
+
+    public function getBonificacao()
+    {
+        return $this->salario * 0.5;
+    }
+
+    public function aumentarSalario()
+    {
+        return $this->salario *= 1.5;
+    }
 }

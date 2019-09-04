@@ -12,3 +12,12 @@ $designer = new Designer('345.454.543-55', 4000);
 
 var_dump($diretor);
 var_dump($designer);
+echo '<br>';
+
+$diretor->senha = "123456";
+
+var_dump($diretor->autenticar("123456"));
+
+echo '<br>';
+var_dump($diretor);
+var_dump($designer);
