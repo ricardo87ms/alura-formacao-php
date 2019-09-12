@@ -4,35 +4,44 @@ namespace Alura;
 
 require 'autoload.php';
 
-$notas = [8, 8, 9, 10];
+use Alura\ArrayUtils;
 
-$calculadora = new Calculadora();
-
-$media = $calculadora->calculaMedia($notas);
-
-if($media) {
-    echo "A média é $media";
-} else {
-    echo "Não foi possível calcular a média";
-}
-
-echo "=========" . PHP_EOL;
-
-$correntistas_e_compras = [
+$correntistas = [
     "Giovanni",
-     12,
+    "João",
     "Maria",
-     25,
     "Luis",
-    "Luísa",
-    "12"
+    "Luisa",
+    "Rafael"
+];
+  
+$saldos = [
+     2500,
+     3000,
+     4400,
+     1000,
+     8700,
+     9000
 ];
 
+$relacionados = array_combine($correntistas, $saldos);
+
 echo "<pre>";
-var_dump($correntistas_e_compras);
+var_dump($relacionados);
+echo "</pre>";
 
-ArrayUtils::remover("12", $correntistas_e_compras);
+echo '<br>';
 
-var_dump($correntistas_e_compras);
+echo "O saldo do Luis é: {$relacionados['Luis']}<br>";
 
+if (array_key_exists("Ricardo", $relacionados)) {
+    echo "O saldo é: {$relacionados["Rafael"]}<br>";
+} else {
+    echo "Não foi encontrado.<br>";
+}
+
+$maiores = ArrayUtils::encontrarPessoasComSaldoMaior(5000, $relacionados);
+
+echo "<pre>";
+var_dump($maiores);
 echo "</pre>";
