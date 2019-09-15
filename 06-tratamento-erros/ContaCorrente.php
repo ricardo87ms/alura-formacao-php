@@ -20,16 +20,18 @@ class ContaCorrente{
         $this->agencia = $agencia;
         $this->numero = $numero;
         $this->saldo = $saldo;
-        try {
-            self::$valorTaxa = intDiv(30, self::$totalDeConta);
-        } catch (Error $erro) {
-            echo "Não é possível realizar divisão por zero";
-            exit;
-        }
-        
 
         self::$totalDeConta++;
 
+        try {
+            if(self::$totalDeConta < 1){
+                throw new Exception("Não é possível realizar divisão por zero!!!!");
+            }
+            self::$valorTaxa = (30 / self::$totalDeConta);
+        } catch (Exception $erro) {
+            echo $erro->getMessage();
+            exit;
+        }
     }
 
     public function depositar($valor)
@@ -44,10 +46,19 @@ class ContaCorrente{
         return $this;
     }
 
-    public function transferir(float $valor, ContaCorrente $conta)
+    public function transferir($valor, ContaCorrente $conta)
     {
+        if(!is_numeric($valor)){
+            throw new InvalidArgumentException("O valor passado na variável não é um valor numerico");
+        }
+
+        if($valor < 0){
+            throw new Exception("Você não pode transferir um valor menor que zero!!!");
+        }
+
         $this->sacar($valor);
         $conta->depositar($valor);
+
         return $this;
     }
 
