@@ -1,5 +1,7 @@
 <?php
 
+require "exception/SaldoInsulficienteException.php";
+
 class ContaCorrente{
 
     private $titular;
@@ -42,15 +44,19 @@ class ContaCorrente{
 
     public function sacar($valor)
     {
+        Validacao::verificaNumerico($valor);
+
+        if($valor > $this->saldo){
+            throw new SaldoInsulficienteException("Saldo insulficiente");
+        }
+
         $this->saldo -= $valor;
         return $this;
     }
 
     public function transferir($valor, ContaCorrente $conta)
     {
-        if(!is_numeric($valor)){
-            throw new InvalidArgumentException("O valor passado na variável não é um valor numerico");
-        }
+        Validacao::verificaNumerico($valor);
 
         if($valor < 0){
             throw new Exception("Você não pode transferir um valor menor que zero!!!");
