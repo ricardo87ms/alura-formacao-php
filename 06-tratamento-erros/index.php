@@ -20,9 +20,19 @@ echo "</pre>";
 echo "<pre>";
 var_dump($contaAna);
 echo "</pre>";
+try {
+    $contaJoao['teste'] = 'teste';
+} catch (Error $erro) {
+    echo $erro->getMessage();
+}
+
 try{
-    $contaJoao->transferir(10, $contaAna);
+    $contaJoao->transferir(100, $contaAna);
+} catch(InvalidArgumentException $erro) {
+    echo "invalid Argument";
+    echo $erro->getMessage();
 } catch(Exception $erro) {
+    echo "Exception";
     echo $erro->getMessage();
 }
 
