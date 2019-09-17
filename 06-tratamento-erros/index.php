@@ -1,10 +1,12 @@
 <?php
 
-require 'Validacao.php';
-require 'ContaCorrente.php';
+// require 'Validacao.php';
+// require 'ContaCorrente.php';
 
-// use Exceptions\Validacao;
-// use Exceptions\ContaCorrente;
+require_once "autoload.php";
+
+use Classes\ContaCorrente;
+use Exceptions\SaldoInsulficienteException;
 
 $contaJoao = new ContaCorrente("João", "122", "121212-2", 500.00);
 $contaMaria = new ContaCorrente("Maria", "122", "121214-2", 1500.00);
@@ -31,11 +33,11 @@ echo "</pre>";
 
 try{
     $contaJoao->transferir(1000, $contaAna);
-} catch(InvalidArgumentException $erro) {
-    echo "invalid Argument";
+} catch(\InvalidArgumentException $erro) {
     echo $erro->getMessage();
-} catch(Exception $erro) {
-    echo "Exception";
+} catch(SaldoInsulficienteException $erro) {
+    echo $erro->getMessage() . " Saldo em conta $erro->saldo, valor tentando sacar $erro->valor";
+} catch(\Exception $erro) {
     echo $erro->getMessage();
 }
 

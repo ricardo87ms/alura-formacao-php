@@ -1,8 +1,12 @@
 <?php
 
-require "exception/SaldoInsulficienteException.php";
+namespace Classes;
 
-class ContaCorrente{
+use Classes\Validacao;
+use Exceptions\SaldoInsulficienteException;
+
+class ContaCorrente
+{
 
     private $titular;
 
@@ -27,10 +31,10 @@ class ContaCorrente{
 
         try {
             if(self::$totalDeConta < 1){
-                throw new Exception("Não é possível realizar divisão por zero!!!!");
+                throw new \Exception("Não é possível realizar divisão por zero!!!!");
             }
             self::$valorTaxa = (30 / self::$totalDeConta);
-        } catch (Exception $erro) {
+        } catch (\Exception $erro) {
             echo $erro->getMessage();
             exit;
         }
@@ -47,7 +51,7 @@ class ContaCorrente{
         Validacao::verificaNumerico($valor);
 
         if($valor > $this->saldo){
-            throw new SaldoInsulficienteException("Saldo insulficiente");
+            throw new SaldoInsulficienteException("Saldo insulficiente", $valor, $this->saldo);
         }
 
         $this->saldo -= $valor;
@@ -59,7 +63,7 @@ class ContaCorrente{
         Validacao::verificaNumerico($valor);
 
         if($valor < 0){
-            throw new Exception("Você não pode transferir um valor menor que zero!!!");
+            throw new \Exception("Você não pode transferir um valor menor que zero!!!");
         }
 
         $this->sacar($valor);
