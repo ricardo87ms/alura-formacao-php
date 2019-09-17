@@ -3,7 +3,9 @@
 namespace Classes;
 
 use Classes\Validacao;
+use Classes\LerArquivo;
 use Exceptions\SaldoInsulficienteException;
+use Exceptions\OperacaoNaoRealizadaException;
 
 class ContaCorrente
 {
@@ -19,6 +21,8 @@ class ContaCorrente
     public static $totalDeConta;
 
     public static $valorTaxa;
+
+    public static $operacaoNaoRealizada;
 
     public function __construct($titular, $agencia, $numero, $saldo)
     {
@@ -49,6 +53,7 @@ class ContaCorrente
     public function sacar($valor)
     {
         Validacao::verificaNumerico($valor);
+        Validacao::verificaNegativo($valor);
 
         if($valor > $this->saldo){
             throw new SaldoInsulficienteException("Saldo insulficiente", $valor, $this->saldo);
@@ -60,16 +65,26 @@ class ContaCorrente
 
     public function transferir($valor, ContaCorrente $conta)
     {
-        Validacao::verificaNumerico($valor);
+        try {
+            $leitorArquivo = new LerArquivo("logBancario.txt");
 
-        if($valor < 0){
-            throw new \Exception("Você não pode transferir um valor menor que zero!!!");
+            $leitorArquivo->abrirArquivo();
+            $leitorArquivo->escreverArquivo();
+            
+
+            Validacao::verificaNumerico($valor);
+            Validacao::verificaNegativo($valor);
+    
+            $this->sacar($valor);
+            $conta->depositar($valor);
+            
+            return $this;
+        } catch (\Exception $erro) {
+            ContaCorrente::$operacaoNaoRealizada++;
+            throw new OperacaoNaoRealizadaException("Operação não realizada", 55, $erro);
+        } finally {
+            $leitorArquivo->fecharArquivo();
         }
-
-        $this->sacar($valor);
-        $conta->depositar($valor);
-
-        return $this;
     }
 
     public function __get($atributo)

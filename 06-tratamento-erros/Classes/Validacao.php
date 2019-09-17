@@ -11,6 +11,13 @@ class Validacao {
         }
     }
 
+    public static function verificaNegativo($valor)
+    {
+        if($valor < 0){
+            throw new \Exception("Você não pode transferir um valor menor que zero!!!");
+        }
+    }
+
     public static function verificaNumerico($valor)
     {
         if(!is_numeric($valor)){

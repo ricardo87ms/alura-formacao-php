@@ -11,7 +11,7 @@ class SaldoInsulficienteException extends \Exception
     {
         $this->valor = $valor;
         $this->saldo = $saldo;
-        parent::__construct($mensagem, $codigo = null, $ex = null);
+        parent::__construct($mensagem, null, null);
     }
 
     public function __get($param)

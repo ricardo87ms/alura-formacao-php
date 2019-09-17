@@ -32,13 +32,15 @@ echo "</pre>";
 // }
 
 try{
-    $contaJoao->transferir(1000, $contaAna);
+    $contaJoao->transferir(50000, $contaAna);
 } catch(\InvalidArgumentException $erro) {
     echo $erro->getMessage();
 } catch(SaldoInsulficienteException $erro) {
     echo $erro->getMessage() . " Saldo em conta $erro->saldo, valor tentando sacar $erro->valor";
 } catch(\Exception $erro) {
-    echo $erro->getMessage();
+    echo $erro->getTraceAsString() . "<br>";
+    echo $erro->getPrevious()->getMessage() . "<br>";
+    echo $erro->getMessage() . "<br>";
 }
 
 
@@ -52,3 +54,5 @@ echo "</pre>";
 
 echo $contaJose::$totalDeConta . "<br>";
 echo $contaJose::$valorTaxa . "<br>";
+
+echo "Operações não realizadas: ". ContaCorrente::$operacaoNaoRealizada . "<br>";
