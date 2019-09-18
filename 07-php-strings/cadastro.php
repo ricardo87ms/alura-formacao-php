@@ -1,8 +1,14 @@
 <?php
 
-require_once 'Usuario.php';
+include_once "autoload.php";
+// require_once 'Usuario.php';
+// require_once 'Contato.php';
 
-$usuario = new Alura\Usuario($_POST['nome']);
+use App\Alura\Usuario;
+use App\Alura\Contato;
+
+$usuario = new Usuario($_POST['nome']);
+$contato = new Contato($_POST['email']);
 
 ?>
 <!DOCTYPE html>
@@ -20,9 +26,9 @@ $usuario = new Alura\Usuario($_POST['nome']);
 <h1>Cadastro feito com sucesso.</h1>
 <p>Seguem os dados de sua conta:</p>
 <ul class="list-group">
-    <li class="list-group-item">Primeiro nome: <?php echo $usuario->getNome() ?></li>
-    <li class="list-group-item">Sobrenome: <?php echo $usuario->getSobrenome() ?></li>
-    <li class="list-group-item">Usuário: </li>
+    <li class="list-group-item">Primeiro nome: <?php echo $usuario->getNome(); ?></li>
+    <li class="list-group-item">Sobrenome: <?php echo $usuario->getSobrenome(); ?></li>
+    <li class="list-group-item">Usuário: <?php echo $contato->getContato(); ?></li>
     <li class="list-group-item">Senha: </li>
     <li class="list-group-item">Telefone: </li>
     <li class="list-group-item">Email: </li>
