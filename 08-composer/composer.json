@@ -1,0 +1,12 @@
+{
+    "name": "ricardo87ms/buscador-cursos-alura",
+    "description": "Buscador de curso desenvolvido no curso da Alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ricardo Moreira Soares",
+            "email": "ricardo87ms@gmail.com"
+        }
+    ],
+    "require": {}
+}
