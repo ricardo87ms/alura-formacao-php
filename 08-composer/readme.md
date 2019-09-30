@@ -16,4 +16,10 @@ composer require symfony/css-selector
 
 composer dumpautoload
 
+composer require --dev phpunit/phpunit
+
+composer global --dev "squizlabs/php_codesniffer"
+
+composer require phan/phan
+
 ```
