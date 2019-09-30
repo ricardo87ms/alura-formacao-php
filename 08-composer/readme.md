@@ -20,6 +20,6 @@ composer require --dev phpunit/phpunit
 
 composer global --dev "squizlabs/php_codesniffer"
 
-composer require phan/phan
+composer require --dev phan/phan
 
 ```
