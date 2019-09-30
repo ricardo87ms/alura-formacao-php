@@ -14,4 +14,6 @@ composer update
 
 composer require symfony/css-selector
 
+composer dumpautoload
+
 ```
