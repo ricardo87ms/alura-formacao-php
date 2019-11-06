@@ -13,4 +13,10 @@ php artisan make::controller EpisodiosController
 
 php artisan make:migration adiciona_campo_assistido --table=episodios
 
+php artisan make:auth
+
+php artisan make:controller EntrarController
+
+php artisan make:controller RegistroController
+
 ```

@@ -12,7 +12,7 @@
 */
 
 Route::get('/series', 'SerieController@index')
-    ->name('listar_series');
+    ->name('listar_series')->middleware('auth');
 Route::get('/series/criar', 'SerieController@create')
     ->name('form_criar_serie');
 Route::post('/series/criar', 'SerieController@store');
@@ -23,3 +23,12 @@ Route::post('/series/{id}/editaNome', 'SerieController@editaNome');
 
 Route::get('/temporadas/{temporada}/episodios', 'EpisodiosController@index');
 Route::post('/temporada/{temporada}/episodios/assistir', 'EpisodiosController@assistir');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/entrar', 'EntrarController@index');
+Route::post('/entrar', 'EntrarController@entrar');
+
+Route::get('/registrar', 'RegistroController@create');
+Route::post('/registrar', 'RegistroController@store');
