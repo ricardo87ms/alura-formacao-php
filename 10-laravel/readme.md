@@ -19,4 +19,6 @@ php artisan make:controller EntrarController
 
 php artisan make:controller RegistroController
 
+ php artisan make:middleware Autenticador
+
 ```
