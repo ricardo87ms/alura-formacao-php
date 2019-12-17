@@ -9,15 +9,15 @@ class Categoria
 
     public function __construct($id = null)
     {
-        if($id){
+        if ($id) {
             $this->id = $id;
             $this->carregar();
         }
     }
 
-    public function listar()
+    public static function listar()
     {
-        $query = "SELECT id, nome FROM categorias";
+        $query = "SELECT id, nome FROM categorias ORDER BY nome";
         $conexao = Conexao::pegarConexao();
         $resultado = $conexao->query($query);
         $lista = $resultado->fetchAll();

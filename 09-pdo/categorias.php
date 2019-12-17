@@ -1,11 +1,10 @@
 <?php require_once 'global.php'; ?>
 <?php
-    try {
-        $categoria = new Categoria();
-        $lista = $categoria->listar();
-    } catch (Exception $e) {
-        ERRO::trataErro($e);
-    }
+try {
+    $lista = Categoria::listar();
+} catch (Exception $e) {
+    ERRO::trataErro($e);
+}
 ?>
 <?php require_once 'cabecalho.php' ?>
 <div class="row">
@@ -32,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($lista as $linha): ?>
+                <?php foreach ($lista as $linha) : ?>
                     <tr>
                         <td><a href="/categorias-detalhe.php" class="btn btn-link"><?php echo $linha['id'] ?></a></td>
                         <td><a href="/categorias-detalhe.php" class="btn btn-link"><?php echo $linha['nome'] ?></a></td>
