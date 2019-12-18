@@ -10,6 +10,47 @@ class Produto
     public $quantidade;
     public $categoria;
 
+    public function __construct($id = null)
+    {
+        if ($id) {
+            $this->id = $id;
+            $this->carregar();
+        }
+    }
+
+    public function carregar()
+    {
+        $query = "SELECT id,
+                         nome,
+                         preco,
+                         quantidade,
+                         categoria_id
+                         FROM produtos
+                         WHERE id = :id";
+        $conexao = Conexao::pegarConexao();
+        $stmt = $conexao->prepare($query);
+        $stmt->bindValue(':id', $this->id);
+        $stmt->execute();
+        $produto = $stmt->fetch();
+        $this->nome = $produto['nome'];
+        $this->preco = $produto['preco'];
+        $this->quantidade = $produto['quantidade'];
+        $this->categoria_id = $produto['categoria_id'];
+    }
+
+    public function alterar()
+    {
+        $query = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade, categoria_id = :categoria_id WHERE id = :id";
+        $conexao = Conexao::pegarConexao();
+        $stmt = $conexao->prepare($query);
+        $stmt->bindValue(':nome', $this->nome);
+        $stmt->bindValue(':preco', $this->preco);
+        $stmt->bindValue(':quantidade', $this->quantidade);
+        $stmt->bindValue(':categoria_id', $this->categoria_id);
+        $stmt->bindValue(':id', $this->id);
+        $stmt->execute();
+    }
+
     public static function listar()
     {
         $query = 'SELECT p.id,
@@ -38,6 +79,15 @@ class Produto
         $stmt->bindValue(':preco', $this->preco);
         $stmt->bindValue(':quantidade', $this->quantidade);
         $stmt->bindValue(':categoria_id', $this->categoria_id);
+        $stmt->execute();
+    }
+
+    public function deletar()
+    {
+        $query = "DELETE FROM produtos WHERE id = :id";
+        $conexao = Conexao::pegarConexao();
+        $stmt = $conexao->prepare($query);
+        $stmt->bindValue(':id', $this->id);
         $stmt->execute();
     }
 }
