@@ -8,10 +8,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $entityManagerFactory = new EntityManagerFactory();
 $entityManager = $entityManagerFactory->getEntityManager();
 
-$aluno = new Aluno();
-$aluno->setNome($argv[1]);
+$id = $argv[1];
 
-$entityManager->persist($aluno);
+$aluno = $entityManager->getReference(Aluno::class, $id);
+
+$entityManager->remove($aluno);
+
 $entityManager->flush();
-
-
