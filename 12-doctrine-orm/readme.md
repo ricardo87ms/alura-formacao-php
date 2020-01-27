@@ -9,4 +9,14 @@ vendor/bin/doctrine.bat
 
 composer require "doctrine/migrations"
 
+vendor/bin/doctrine.bat orm:info
+
+vendor/bin/doctrine.bat orm:mapping:describe Curso
+
+vendor/bin/doctrine-migrations.bat migrations:diff
+
+vendor/bin/doctrine-migrations.bat migrations:migrate
+
+php commands/criar-curso.php "PHP Avançado"
+
 ```
