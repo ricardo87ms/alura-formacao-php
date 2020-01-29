@@ -9,6 +9,8 @@ vendor/bin/doctrine.bat
 
 composer require "doctrine/migrations"
 
+vendor/bin/doctrine-migrations.bat migration:status
+
 vendor/bin/doctrine.bat orm:info
 
 vendor/bin/doctrine.bat orm:mapping:describe Curso
