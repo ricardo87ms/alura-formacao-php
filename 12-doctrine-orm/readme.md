@@ -21,4 +21,6 @@ vendor/bin/doctrine-migrations.bat migrations:migrate
 
 php commands/criar-curso.php "PHP Avançado"
 
+vendor/bin/doctrine.bat or:schema-tool:create
+
 ```

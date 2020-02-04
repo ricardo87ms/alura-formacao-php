@@ -3,6 +3,7 @@
 use Alura\Doctrine\Entity\Aluno;
 use Alura\Doctrine\Entity\Telefone;
 use Alura\Doctrine\Helpers\EntityManagerFactory;
+use Alura\Doctrine\Repository\AlunoRepository;
 use Doctrine\DBAL\Logging\DebugStack;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -15,8 +16,8 @@ $alunoRepository = $entityManager->getRepository(Aluno::class);
 $debugStack = new DebugStack();
 $entityManager->getConfiguration()->setSQLLogger($debugStack);
 
-/** @var Aluno[] $alunos */
-$alunos = $alunoRepository->findAll();
+/** @var AlunoRepository $alunos */
+$alunos = $alunoRepository->buscaCursosPorAlunos();
 
 foreach ($alunos as $aluno) {
     $telefones = $aluno->getTelefones()

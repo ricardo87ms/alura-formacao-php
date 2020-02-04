@@ -10,13 +10,19 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $entityManagerFactory = new EntityManagerFactory();
 $entityManager = $entityManagerFactory->getEntityManager();
 
-$alunoRepository = $entityManager->getRepository(Aluno::class);
+// $alunoRepository = $entityManager->getRepository(Aluno::class);
 
 $debugStack = new DebugStack();
 $entityManager->getConfiguration()->setSQLLogger($debugStack);
 
-/** @var Aluno[] $alunos */
-$alunos = $alunoRepository->findAll();
+// /** @var Aluno[] $alunos */
+// $alunos = $alunoRepository->findAll();
+
+$classeAluno = Aluno::class;
+$dql = "SELECT a, t, c FROM $classeAluno a JOIN a.telefones t JOIN a.cursos c";
+$query = $entityManager->createQuery($dql);
+/**@var Aluno[] $alunos */
+$alunos = $query->getResult();
 
 foreach ($alunos as $aluno) {
     $telefones = $aluno->getTelefones()
