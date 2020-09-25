@@ -4,7 +4,7 @@ require_once 'autoload.php';
 
 use Alura\Banco\Modelo\Endereco;
 use Alura\Banco\Modelo\Conta\Titular;
-use Alura\Banco\Modelo\Conta\Conta;
+use Alura\Banco\Modelo\Conta\ContaCorrente;
 use Alura\Banco\Modelo\Cpf;
 
 $endereco = new Endereco('Tatuí', 'teste', 'rua teste', '4545d');
@@ -13,11 +13,11 @@ $endereco = new Endereco('Tatuí', 'teste', 'rua teste', '4545d');
 
 $ricardo = new Titular(new Cpf('999.444.444-22'), 'Ricardo Moreira Soares', $endereco);
 
-$primeiraConta = new Conta($ricardo);
+$primeiraConta = new ContaCorrente($ricardo);
 
 $teste = new Titular(new Cpf('999.343.444-22'), 'Teste de Nome', $endereco);
 
-$segundaConta = new Conta($teste);
+$segundaConta = new ContaCorrente($teste);
 
 // $primeiraConta->defineCpfTitular('999.999.444-22');
 
@@ -33,4 +33,4 @@ echo $primeiraConta->recuperaCpfTitular()->recuperaNumero() . PHP_EOL;
 
 var_dump($primeiraConta);
 
-echo Conta::recuperaNumeroDeContas();
+echo ContaCorrente::recuperaNumeroDeContas();
