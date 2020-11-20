@@ -21,4 +21,8 @@ $outroEndereco = new Endereco(
 
 
 echo $umEndereco . PHP_EOL;
-echo $outroEndereco;
+echo $outroEndereco . PHP_EOL;
+
+$umEndereco->rua = 'Rua de teste';
+
+echo $umEndereco->rua;
