@@ -15,6 +15,8 @@ class Endereco
     private $rua;
     private $numero;
 
+    use AcessoPropriedades;
+
     public function __construct(string $cidade, string $bairro, string $rua, string $numero)
     {
         $this->cidade = $cidade;
@@ -66,12 +68,6 @@ class Endereco
     public function __toString()
     {
         return "{$this->rua}, {$this->numero}, {$this->bairro}, {$this->cidade}";
-    }
-
-    public function __get(string $nomeAtributo)
-    {
-        $metodo = 'recupera' . ucfirst($nomeAtributo);
-        return $this->$metodo();
     }
 
     public function __set($name, $value)
