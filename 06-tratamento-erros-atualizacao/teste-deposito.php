@@ -12,12 +12,10 @@ $conta = new ContaPoupanca(
         new Endereco('Petrópolis', 'bairro Teste', 'Rua lá', '37')
     )
 );
-$conta->deposita(500);
-
 try {
-    $conta->saca(1000);
-} catch (SaldoInsuficienteException $exception) {
-    echo "Você não tem saldo: " . $exception->getMessage() . PHP_EOL;
+    $conta->deposita(-500);
+} catch (InvalidArgumentException $exception) {
+    echo "Valor a depositar precisa ser positivo" . PHP_EOL;
 }
 
 echo $conta->recuperaSaldo();
