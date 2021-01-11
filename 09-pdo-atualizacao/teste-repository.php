@@ -32,16 +32,16 @@ $connection = ConnectionCreator::createConnection();
 // var_dump($repository->save($student));
 
 
-// // Teste All Students
-// $repository = new PdoStudentRepository($connection);
-
-// $students = $repository->allStudents();
-
-// var_dump($students);
-
-// Teste All Students Birth At
+// Teste All Students
 $repository = new PdoStudentRepository($connection);
 
-$students = $repository->studentsBirthAt(new DateTimeImmutable('1987-10-21'));
+$students = $repository->studentsWithPhones();
 
 var_dump($students);
+
+// // Teste All Students Birth At
+// $repository = new PdoStudentRepository($connection);
+
+// $students = $repository->studentsBirthAt(new DateTimeImmutable('1987-10-21'));
+
+// var_dump($students);
