@@ -9,6 +9,3 @@
 
 <body>
     <div class="container">
-        <div class="jumbotron">
-            <h1>Listar cursos</h1>
-        </div>
