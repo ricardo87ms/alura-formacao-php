@@ -45,6 +45,8 @@ class RealizaLogin implements InterfaceControladorRequisicao
             return;
         }
 
+        $_SESSION['logado'] = true;
+
         header('Location: /listar-cursos');
     }
 }
