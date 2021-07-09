@@ -19,4 +19,12 @@ vendor/bin/doctrine dbal:run-sql "INSERT INTO usuarios (email, senha) VALUES ('t
 
 vendor/bin/doctrine dbal:run-sql "select * from usuarios"
 
+composer require psr/http-message
+
+composer require psr/http-server-handler
+
+composer require nyholm/psr7
+
+composer require nyholm/psr7-server
+
 ```
