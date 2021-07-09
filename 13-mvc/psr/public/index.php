@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use Alura\Cursos\Controller\InterfaceControladorRequisicao;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use \Nyholm\Psr7Server\ServerRequestCreator;
+use Psr\Container\ContainerInterface;
 
 $caminho = $_SERVER['PATH_INFO'];
 $rotas = require __DIR__ . '/../config/routes.php';
@@ -35,8 +36,12 @@ $creator = new ServerRequestCreator(
 $request = $creator->fromGlobals();
 
 $classeControladora = $rotas[$caminho];
+
+/** @var ContainerInterface $container */
+$container = require __DIR__ . '/../config/dependencies.php';
+
 /** @var InterfaceControladorRequisicao $controlador */
-$controlador = new $classeControladora();
+$controlador = $container->get($classeControladora);
 $resposta = $controlador->handle($request);
 
 
