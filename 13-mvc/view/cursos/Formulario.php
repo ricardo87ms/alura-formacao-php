@@ -1,7 +1,4 @@
 <?php include __DIR__ . '../../inicio-html.php' ?>
-<div class="jumbotron">
-    <h1><?= $titulo ?></h1>
-</div>
 <form method="post" action="/salvar-curso<?= isset($curso) ? '?id=' . $curso->getId() : ''; ?>">
     <div class="form-group">
         <label for="descricao">Descrição</label>

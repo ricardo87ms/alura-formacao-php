@@ -21,3 +21,6 @@
         </nav>
     <?php endif; ?>
     <div class="container">
+        <div class="jumbotron">
+            <h1><?= $titulo ?></h1>
+        </div>
