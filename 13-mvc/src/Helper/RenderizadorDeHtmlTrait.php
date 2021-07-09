@@ -1,10 +1,9 @@
 <?php
 
-namespace Alura\Cursos\Controllers;
+namespace Alura\Cursos\Helper;
 
-abstract class ControllerComHtml
+trait RenderizadorDeHtmlTrait
 {
-    //O método desta classe passou a ser utilizado via trait
     public function renderizaHtml(string $caminhoTemplate, array $dados): string
     {
         extract($dados);
