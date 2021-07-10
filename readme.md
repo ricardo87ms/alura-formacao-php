@@ -32,8 +32,6 @@ Repositório dos cursos que fazem parte da formação **PHP** da instituição *
 
 * [MVC com PHP: Entenda o padrão Model-View-Controller](13-mvc) - ✅ [Certificado](https://cursos.alura.com.br/certificate/ricardo87ms/php-model-view-controller)
 
-* [MVC com PHP: Entenda o padrão Model-View-Controller](13-mvc) - ✅ [Certificado](https://cursos.alura.com.br/certificate/ricardo87ms/php-model-view-controller)
-
 ## Certificado da Formação
 
 🏆💻✅ [Certificado da Formação](https://cursos.alura.com.br/user/ricardo87ms/degree-desenvolvedor-php-2242/certificate)
